@@ -8,6 +8,7 @@ class saldoPage extends StatelessWidget {
   final _raController = TextEditingController();
   final _senhaController = TextEditingController();
   bool _raObrigatorio = false;
+  Color _colorButton = Color.fromARGB(255, 17, 122, 130);
 
   @override
   Widget build(BuildContext context) {
@@ -146,16 +147,31 @@ class saldoPage extends StatelessWidget {
                                         fontSize: 22,
                                       ),
                                     ),
-                                    content: Text(
-                                      'Seu saldo é RS111',
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 16
-                                      ),
+                                    content: Row(
+                                      children: [
+                                        Container(
+                                          width: 50,
+                                          margin: EdgeInsets.only(top: 15, left: 5),
+                                          child: Image.asset("image/carteira.png"),
+                                        ),
+                                        Container(
+                                          margin: EdgeInsets.only(top: 22, left: 5),
+                                          child: Text(
+                                            'O seu saldo é R\$111,00.',
+                                            style: TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 16,
+                                            ),
+                                          ),
+                                        )
+                                      ],
                                     ),
                                     actions: [
                                       ElevatedButton(
                                         child: Text('OK'),
+                                        style: ElevatedButton.styleFrom(
+                                          primary: _colorButton,
+                                        ),
                                         onPressed: () {
                                           Navigator.of(context).pop();
                                         },
@@ -167,7 +183,7 @@ class saldoPage extends StatelessWidget {
                             },
                             child: Text('Consultar'),
                             style: ElevatedButton.styleFrom(
-                              primary: Color(0xFF0A6066),
+                              primary: _colorButton,
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(10)
                               ),
