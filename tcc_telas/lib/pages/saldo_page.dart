@@ -5,6 +5,9 @@ import 'package:flutter/material.dart';
 import 'home_page.dart';
 
 class saldoPage extends StatelessWidget {
+  final _raController = TextEditingController();
+  final _senhaController = TextEditingController();
+  bool _raObrigatorio = false;
 
   @override
   Widget build(BuildContext context) {
@@ -101,14 +104,79 @@ class saldoPage extends StatelessWidget {
                     color: Color(0xFFA12E2F),
                     borderRadius: BorderRadius.circular(20),
                   ),
-                  child: Form(
-                    child: TextFormField(
-                      decoration: InputDecoration(
-                        labelText: 'RA:',
-                        
-                      ),
+                  child: Padding(
+                    padding: EdgeInsets.only(top: 20, left: 15, right: 15),
+                    child: Column(
+                      children: [
+                        TextField(
+                          decoration: InputDecoration(
+                            filled: true,
+                            fillColor: Colors.grey,
+                            hintText: 'RA',
+                            border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
+                          ),
+                        ),
+                        SizedBox(height: 20),
+                        TextField(
+                          obscureText: true,
+                          decoration: InputDecoration(
+                            filled: true,
+                            fillColor: Colors.grey,
+                            hintText: 'Senha',
+                            border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
+                          ),
+                        ),
+                        SizedBox(height: 25),
+                        Align(
+                          alignment: Alignment.center,
+                          child: ElevatedButton(
+                            onPressed: () {
+                              showDialog(
+                                context: context,
+                                barrierDismissible: false,
+
+                                builder: (context) {
+                                  return AlertDialog(
+                                    backgroundColor: Color(0xFFA12E2F),
+                                    shape: OutlineInputBorder(borderRadius: BorderRadius.circular(15)),
+                                    title: Text(
+                                      'Saldo',
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 22,
+                                      ),
+                                    ),
+                                    content: Text(
+                                      'Seu saldo é RS111',
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 16
+                                      ),
+                                    ),
+                                    actions: [
+                                      ElevatedButton(
+                                        child: Text('OK'),
+                                        onPressed: () {
+                                          Navigator.of(context).pop();
+                                        },
+                                      )
+                                    ],
+                                  );
+                                }
+                              );
+                            },
+                            child: Text('Consultar'),
+                            style: ElevatedButton.styleFrom(
+                              primary: Color(0xFF0A6066),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10)
+                              ),
+                            ),
+                          ),
+                      )
+                      ]
                     ),
-                  ),
+                  )
                 ),
               ),
                 ],
